@@ -6,6 +6,7 @@ import com.zzyl.common.core.domain.AjaxResult;
 import com.zzyl.common.core.domain.R;
 import com.zzyl.common.core.page.TableDataInfo;
 import com.zzyl.common.enums.BusinessType;
+import com.zzyl.nursing.domain.Bed;
 import com.zzyl.nursing.domain.Room;
 import com.zzyl.nursing.service.IRoomService;
 import com.zzyl.nursing.vo.RoomVo;
@@ -103,6 +104,16 @@ public class RoomController extends BaseController
     public AjaxResult remove(@ApiParam(value = "房间ID数组", required = true)  @PathVariable Long[] ids)
     {
         return toAjax(roomService.deleteRoomByIds(ids));
+    }
+    /**
+     * 根据房间id查询房间数据(楼层、房间、价格)
+     */
+    @ApiOperation("根据房间id查询房间数据(楼层、房间、价格)")
+    @PreAuthorize("@ss.hasPermi('elder:bed:query')")
+    @GetMapping("/one/{roomId}")
+    public  R<RoomVo> getRoomInfo(@ApiParam(value = "房间ID", required = true)  @PathVariable Long roomId) {
+        RoomVo room = roomService.getRoomInfo(roomId);
+        return R.ok(room);
     }
 
 }

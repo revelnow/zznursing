@@ -90,4 +90,5 @@ public class BedController extends BaseController
     {
         return toAjax(bedService.deleteBedByIds(ids));
     }
+
 }
