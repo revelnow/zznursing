@@ -140,3 +140,7 @@ aliyun:
 
 dept:
   nursingId: 201
+
+bailian:
+  key: sk-74c50fed318c497392b142968bc07dac
+  model: qwen-plus

@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.zzyl.common.exception.base.BaseException;
 import com.zzyl.common.utils.CodeGenerator;
 import com.zzyl.common.utils.DateUtils;
-import com.zzyl.common.utils.IdCardUtil;
+import com.zzyl.common.utils.IDCardUtils;
 import com.zzyl.common.utils.bean.BeanUtils;
 import com.zzyl.nursing.domain.*;
 import com.zzyl.nursing.dto.CheckInApplyDto;
@@ -184,7 +184,7 @@ public class CheckInServiceImpl extends ServiceImpl<CheckInMapper, CheckIn> impl
         if(ObjectUtils.isEmpty(elder)){
             throw new BaseException("未找到老人信息");
         }
-        int age = IdCardUtil.getAgeByIdCard(elder.getIdCardNo());
+        int age = IDCardUtils.getAgeByIdCard(elder.getIdCardNo());
         checkInElderVo.setAge(age);
         BeanUtils.copyProperties(elder, checkInElderVo );
         checkInDetailVo.setCheckInElderVo(checkInElderVo);
